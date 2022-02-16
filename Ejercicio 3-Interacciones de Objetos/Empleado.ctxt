@@ -16,4 +16,6 @@ comment7.params=
 comment7.target=double\ getSalario()
 comment8.params=
 comment8.target=java.lang.String\ toString()
-numComments=9
+comment9.params=args
+comment9.target=void\ main(java.lang.String[])
+numComments=10
