@@ -18,9 +18,33 @@ public class RelojInternacional
     //setters
     public void setGMT(int h, int m, int s){
         this.GMT = new Hora(h, m, s);
-        this.CST = new Hora(h-6, m, s);
-        this.AST = new Hora(h-3, m, s);
-        this.PST = new Hora(h-8, m, s);
+        
+        if (h < 6){
+            int h_aux = h - 6;
+            this.CST = new Hora(24+h_aux, m, s);
+        }
+        else{
+            this.CST = new Hora(h-6, m, s);
+        }
+        
+        if (h < 3){
+            int h_aux = h - 3;
+            this.AST = new Hora(24+h_aux, m, s);
+            
+        }
+        else{
+            this.AST = new Hora(h-3, m, s);
+        }
+        
+        if (h < 8){
+            int h_aux = h - 8;
+            this.PST = new Hora(24+h_aux, m, s);
+            
+        }
+        else{
+            this.PST = new Hora(h-8, m, s);
+        }
+        
         this.CET = new Hora(h+1, m, s);
     }
     
