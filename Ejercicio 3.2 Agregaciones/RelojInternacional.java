@@ -27,13 +27,13 @@ public class RelojInternacional
             this.CST = new Hora(h-6, m, s);
         }
         
-        if (h < 3){
-            int h_aux = h - 3;
+        if (h < 4){
+            int h_aux = h - 4;
             this.AST = new Hora(24+h_aux, m, s);
             
         }
         else{
-            this.AST = new Hora(h-3, m, s);
+            this.AST = new Hora(h-4, m, s);
         }
         
         if (h < 8){
