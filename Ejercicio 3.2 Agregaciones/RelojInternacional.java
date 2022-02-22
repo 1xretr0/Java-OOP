@@ -68,4 +68,9 @@ public class RelojInternacional
     public String getCET(){
         return CET.toString();
     }
+    
+    public String toString(){
+        return "GMT " + GMT.toString() + ", CST " + CST.toString() + ", AST " +
+        AST.toString() + ", PST " + PST.toString() + ", CET " + CET.toString();
+    }
 }
