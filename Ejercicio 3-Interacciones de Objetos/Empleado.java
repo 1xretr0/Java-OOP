@@ -15,7 +15,7 @@ public class Empleado
     private double salario;
     private static int empleados = 100;
     
-    //constructor
+    //constructors
     public Empleado(String nom, String ap, double sal, int dia,
     int mes, int año){
         nombre = new String(nom);
@@ -23,6 +23,15 @@ public class Empleado
         numeroEmpleado = 100;
         ingreso = new Date(año, mes, dia);
         setSalario(sal);
+    }
+    
+    public Empleado(Empleado emp){
+        nombre = new String(emp.getNombre());
+        apellido = new String(emp.getApellido());
+        numeroEmpleado = emp.getNumeroEmpleado();
+        Date temp = emp.getIngreso();
+        ingreso = new Date(temp.getYear(), temp.getMonth(), temp.getDay());
+        setSalario(emp.getSalario());
     }
     
     //setters & getters
@@ -50,6 +59,10 @@ public class Empleado
         return salario;
     }
     
+    public Empleado getEmpleado(){
+        return new Empleado(this);
+    }
+    
     public String toString(){
         return "Empleado: " + nombre + " " + apellido + ", ID: " +
         Integer.toString(numeroEmpleado) + ", Fecha Ingreso: " + 
@@ -57,10 +70,8 @@ public class Empleado
     }
     
     public static void main(String args[]){
-	//System.out.println("Hello world!");
-	
-	Empleado robert = new Empleado("Roberto", "Salazar", 800.00,
-	15,2,2022);
-	System.out.println(robert.toString());
+        Empleado robert = new Empleado("Roberto", "Salazar", 800.00,
+        15,2,2022);
+        System.out.println(robert.toString());
     }
 }
