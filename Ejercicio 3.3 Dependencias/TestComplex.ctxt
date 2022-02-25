@@ -1,0 +1,25 @@
+#BlueJ class context
+comment0.target=TestComplex
+comment0.text=\r\n\ The\ test\ class\ TestComplex.\r\n\r\n\ @author\ \ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=
+comment1.target=void\ testCase1()
+comment1.text=\r\n\ Tears\ down\ the\ test\ fixture.\r\n\r\n\ Called\ after\ every\ test\ case\ method.\r\n
+comment10.params=
+comment10.target=void\ testCase10()
+comment2.params=
+comment2.target=void\ testCase2()
+comment3.params=
+comment3.target=void\ testCase3()
+comment4.params=
+comment4.target=void\ testCase4()
+comment5.params=
+comment5.target=void\ testCase5()
+comment6.params=
+comment6.target=void\ testCase6()
+comment7.params=
+comment7.target=void\ testCase7()
+comment8.params=
+comment8.target=void\ testCase8()
+comment9.params=
+comment9.target=void\ testCase9()
+numComments=11

@@ -1,0 +1,24 @@
+#BlueJ class context
+comment0.target=Complex
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Complex\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=real\ imag
+comment1.target=Complex(int,\ int)
+comment10.params=
+comment10.target=java.lang.String\ toString()
+comment2.params=
+comment2.target=Complex()
+comment3.params=Comp
+comment3.target=Complex(Complex)
+comment4.params=real
+comment4.target=void\ setReal(int)
+comment5.params=imag
+comment5.target=void\ setImag(int)
+comment6.params=
+comment6.target=int\ getReal()
+comment7.params=
+comment7.target=int\ getImag()
+comment8.params=comp
+comment8.target=Complex\ suma(Complex)
+comment9.params=comp
+comment9.target=Complex\ resta(Complex)
+numComments=11
