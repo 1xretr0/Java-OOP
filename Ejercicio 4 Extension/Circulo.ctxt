@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.target=Circulo
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Circulo\ here.\r\n\ \r\n\ @author\ Roberto\ Salazar\ Marquez\r\n\ @version\ 1.0\r\n
+comment1.params=x\ y\ r
+comment1.target=Circulo(int,\ int,\ int)
+comment2.params=r
+comment2.target=void\ setRadio(int)
+comment3.params=
+comment3.target=int\ getRadio()
+comment4.params=
+comment4.target=java.lang.String\ toString()
+comment5.params=arg
+comment5.target=void\ main(java.lang.String[])
+numComments=6

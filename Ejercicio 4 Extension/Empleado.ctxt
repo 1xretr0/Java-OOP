@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=Empleado
+comment1.params=nombre\ apellido
+comment1.target=Empleado(java.lang.String,\ java.lang.String)
+comment2.params=
+comment2.target=java.lang.String\ getNombre()
+comment3.params=
+comment3.target=java.lang.String\ getApellido()
+comment4.params=
+comment4.target=double\ calcularSalario()
+numComments=5
