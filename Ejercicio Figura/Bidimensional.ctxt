@@ -1,0 +1,18 @@
+#BlueJ class context
+comment0.target=Bidimensional
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Bidimensional\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=area\ perimetro\ base\ altura
+comment1.target=Bidimensional(double,\ double,\ double,\ double)
+comment2.params=perimetro
+comment2.target=void\ setPerimetro(double)
+comment3.params=
+comment3.target=double\ getPerimetro()
+comment4.params=base
+comment4.target=void\ setBase(double)
+comment5.params=
+comment5.target=double\ getBase()
+comment6.params=altura
+comment6.target=void\ setAltura(double)
+comment7.params=
+comment7.target=double\ getAltura()
+numComments=8

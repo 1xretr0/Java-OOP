@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=Tridimensional
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Tridimensional\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=area\ volumen
+comment1.target=Tridimensional(double,\ double)
+comment2.params=volumen
+comment2.target=void\ setVolumen(double)
+comment3.params=
+comment3.target=double\ getVolumen()
+numComments=4
