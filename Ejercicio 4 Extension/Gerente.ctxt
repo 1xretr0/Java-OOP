@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=Gerente
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Gerente\ here.\r\n\ \r\n\ @author\ Roberto\ Salazar\ Marquez\r\n\ @version\ 1.0\r\n
+comment1.params=nombre\ apellido\ salario
+comment1.target=Gerente(java.lang.String,\ java.lang.String,\ double)
+comment1.text=\r\n\ Constructor\ para\ objetos\ de\ la\ clase\ Gerente\r\n
+comment2.params=sal
+comment2.target=void\ setSalario(double)
+comment3.params=
+comment3.target=double\ getSalario()
+comment4.params=
+comment4.target=double\ calculaSalario()
+numComments=5
