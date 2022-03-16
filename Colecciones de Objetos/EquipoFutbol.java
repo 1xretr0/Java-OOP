@@ -7,16 +7,17 @@
  */
 public class EquipoFutbol
 {
-    private String nombreEquipo, entrenador, equipo[]; 
+    private String nombre, entrenador;
+    private Jugador equipo[];
     
     public EquipoFutbol(String nombre, String entrenador){
-        nombreEquipo = new String(nombre);
+        this.nombre = new String(nombre);
         this.entrenador = new String(entrenador);
-        equipo = new String[11];
+        equipo = new Jugador[11];
     }
     
-    public String getNombreEquipo(){
-        return new String(nombreEquipo);
+    public String getnombre(){
+        return new String(nombre);
     }
     
     public void setEntrenador(String entrenador){
@@ -27,14 +28,14 @@ public class EquipoFutbol
         return new String(entrenador);
     }
     
-    public void agregaJugador(int index, String nombre){
+    public void agregaJugador(int index, Jugador nombre){
         if (index >= 1 && index <= 11)
-            equipo[index - 1] = new String(nombre);
+            equipo[index - 1] = new Jugador(nombre);
     }
     
     public String getJugador(int index){
         if ((index >= 1 && index <= 11) && (equipo[index - 1] != null)){
-            return new String(equipo[index - 1]);
+            return equipo[index - 1].toString();
         }
         else{
             return null;
