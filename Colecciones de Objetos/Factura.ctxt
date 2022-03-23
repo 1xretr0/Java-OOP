@@ -1,0 +1,15 @@
+#BlueJ class context
+comment0.target=Factura
+comment1.params=nomCliente
+comment1.target=Factura(java.lang.String)
+comment2.params=
+comment2.target=int\ getNumArticulos()
+comment3.params=art
+comment3.target=void\ agregaArticulo(Articulo)
+comment4.params=index
+comment4.target=Articulo\ getArticulo(int)
+comment5.params=index\ nuevo
+comment5.target=void\ setArticulo(int,\ Articulo)
+comment6.params=
+comment6.target=double\ calculaTotalArticulos()
+numComments=7
