@@ -2,6 +2,12 @@
 comment0.target=TestGenericos
 comment1.params=arregloEntrada
 comment1.target=void\ imprimeArreglo(java.lang.Double[])
-comment2.params=
-comment2.target=TestGenericos()
-numComments=3
+comment2.params=arregloEntrada
+comment2.target=void\ imprimeArreglo(java.lang.Integer[])
+comment3.params=arregloEntrada
+comment3.target=void\ imprimeArreglo(java.lang.Object[])
+comment4.params=args
+comment4.target=void\ main(java.lang.String[])
+comment5.params=
+comment5.target=TestGenericos()
+numComments=6

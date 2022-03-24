@@ -1,33 +1,26 @@
-
-/**
- * Write a description of class Punto here.
- * 
- * @author Roberto Salazar Marquez
- * @version 1.0
- */
-public class Punto extends Object
+public class Punto <E>
 {
-    private int x;
-    private int y;
+    private E x;
+    private E y;
     
-    public Punto(int x, int y) {
+    public Punto(E x, E y) {
         setX(x);
         setY(y);
     }
     
-    public void setX(int x) {
+    public void setX(E x) {
         this.x = x;
     }
     
-    public void setY(int y) {
+    public void setY(E y) {
         this.y = y;
     }
     
-    public int getX() {
+    public E getX() {
         return x;
     }
     
-    public int getY() {
+    public E getY() {
         return y;
     }
     
