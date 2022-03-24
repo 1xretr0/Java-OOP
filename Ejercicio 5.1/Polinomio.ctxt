@@ -1,0 +1,18 @@
+#BlueJ class context
+comment0.target=Polinomio
+comment0.text=\r\n\ conservara\ polinomios\ de\ una\ sola\ variable\ x\ de\ grado\ n\r\n\r\n\ @author\ sebas\ moran\r\n\ @version\ 1.0\r\n
+comment1.params=grado
+comment1.target=Polinomio(int)
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Termino\r\n\ \r\n\ @param\ int\ grado\ maximo\ del\ polinomio\r\n
+comment2.params=term\ index
+comment2.target=void\ agregaTermino(Termino,\ int)
+comment2.text=\r\n\ permite\ agregar\ un\ termino\ al\ polinomio\r\n\ en\ la\ posicion\ de\ su\ grado\r\n\r\n\ @param\ \ Termino\ term\r\n\ @param\ \ int\ index\ osea\ el\ exponente\ del\ termino\ a\ agregar\r\n
+comment3.params=term
+comment3.target=void\ agregaTermino(Termino)
+comment3.text=\r\n\ permite\ agregar\ un\ termino\ al\ polinomio\r\n\ en\ la\ posicion\ de\ su\ grado\r\n\r\n\ @param\ \ Termino\ term\r\n
+comment4.params=x
+comment4.target=double\ evalua(double)
+comment4.text=\r\n\ evalua\ el\ total\ de\ los\ terminos\ del\ polinomio\r\n\ para\ una\ x\ en\ especifico\r\n\ \r\n\ @param\ double\ x\r\n\ @return\ valor\ total\ del\ polinomio\r\n
+comment5.params=
+comment5.target=java.lang.String\ toString()
+numComments=6

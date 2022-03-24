@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=PuntosEcuacion
+comment0.text=\r\n\ conserva\ los\ puntos\ representados\ por\ un\ polinomio\r\n\ en\ un\ intervalo\ dado.\ generara\ una\ lista\ de\ valores\r\n\ desde\ el\ limite\ inferior\ al\ superior\ del\ intervalo\r\n\r\n\ @author\ sebas\ moran\r\n\ @version\ 1.0\r\n
+comment1.params=poli\ linf\ lsup\ inc
+comment1.target=PuntosEcuacion(Polinomio,\ double,\ double,\ double)
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ PuntosEcuacion\r\n
+comment2.params=
+comment2.target=java.util.Vector\ getPuntosEcuacion()
+comment2.text=\r\n\ obtiene\ los\ valores\ de\ los\ polinomios\ evaluados\r\n\r\n\ @param\ \ y\ \ a\ sample\ parameter\ for\ a\ method\r\n\ @return\ \ \ \ the\ sum\ of\ x\ and\ y\r\n
+comment3.params=num
+comment3.target=Punto\ getPunto(int)
+numComments=4
