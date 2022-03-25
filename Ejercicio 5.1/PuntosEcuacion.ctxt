@@ -9,4 +9,6 @@ comment2.target=java.util.Vector\ getPuntosEcuacion()
 comment2.text=\r\n\ obtiene\ los\ valores\ de\ los\ polinomios\ evaluados\r\n\r\n\ @param\ \ y\ \ a\ sample\ parameter\ for\ a\ method\r\n\ @return\ \ \ \ the\ sum\ of\ x\ and\ y\r\n
 comment3.params=num
 comment3.target=Punto\ getPunto(int)
-numComments=4
+comment4.params=args
+comment4.target=void\ main(java.lang.String[])
+numComments=5

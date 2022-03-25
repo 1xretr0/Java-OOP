@@ -42,6 +42,10 @@ public class Termino
         return exponente;
     }
     
+    public double getCoeficiente(){
+        return coeficiente;
+    }
+    
     public String toString(){
         return new String(coeficiente + "x^" + exponente);
     }

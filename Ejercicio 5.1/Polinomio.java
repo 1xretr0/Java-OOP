@@ -15,30 +15,40 @@ public class Polinomio
      * @param int grado maximo del polinomio
      */
     public Polinomio(int grado){
-        terminos = new Termino[grado];
+        terminos = new Termino[grado+1];
     }
     
     /**
      * permite agregar un termino al polinomio
-     * en la posicion de su grado
+     * en la posicion del index entregado
      *
      * @param  Termino term
      * @param  int index osea el exponente del termino a agregar
      */
     public void agregaTermino(Termino term, int index)
     {
-        terminos[index-1] = term;
+        if (index >= 0 && index <= terminos.length)
+            terminos[index] = term;
     }
     
     /**
      * permite agregar un termino al polinomio
-     * en la posicion de su grado
+     * automaticamente en la posicion de su grado
      *
      * @param  Termino term
      */
     public void agregaTermino(Termino term)
     {
-        terminos[term.getExponente()-1] = term;
+        if (terminos[term.getExponente()] == null){
+            terminos[term.getExponente()] = new Termino(
+            term.getCoeficiente(), term.getExponente());
+        }
+        else{
+            terminos[term.getExponente()] = new Termino(
+            term.getCoeficiente() + 
+            terminos[term.getExponente()].getCoeficiente(),
+            term.getExponente());
+        }
     }
     
     /**
@@ -64,7 +74,7 @@ public class Polinomio
         
         for (int i = terminos.length; i > 0; i--){
             if (terminos[i-1] != null)     
-                polinomio += terminos[i-1].toString() + " + ";
+                polinomio += new String(terminos[i-1].toString() + " + ");
         }
         
         return polinomio;

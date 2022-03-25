@@ -11,6 +11,7 @@ public class PuntosEcuacion
 {
     private Polinomio poli;
     private Vector <Punto> puntos;
+    private double linf, lsup, inc;
     
     /**
      * Constructor for objects of class PuntosEcuacion
@@ -18,7 +19,11 @@ public class PuntosEcuacion
     public PuntosEcuacion(Polinomio poli, double linf, double lsup,
     double inc)
     {
-        
+        this.poli = poli;
+        puntos = new Vector<Punto>(1);
+        this.linf = linf;
+        this.lsup = lsup;
+        this.inc = inc;
     }
 
     /**
@@ -29,10 +34,22 @@ public class PuntosEcuacion
      */
     public Vector getPuntosEcuacion()
     {
-        return null;
+        for (double i = linf; i <= lsup; i+=inc){
+            double x = i;
+            double y = poli.evalua(i);
+            
+            Punto punto_aux = new Punto(x, y);
+            puntos.add(punto_aux);
+        }
+        
+        return new Vector<Punto>(puntos);
     }
     
-    public Punto getPunto(int num){
-        return null;
+    public Punto<Integer> getPunto(int num){
+        return puntos.get(num);
+    }
+    
+    public void main(String args[]){
+            
     }
 }
