@@ -70,11 +70,17 @@ public class Polinomio
     }
     
     public String toString(){
-        String polinomio = "";
+        String polinomio = "y=";
         
         for (int i = terminos.length; i > 0; i--){
-            if (terminos[i-1] != null)     
-                polinomio += new String(terminos[i-1].toString() + " + ");
+            if (terminos[i-1] != null){
+                if (i == 1){
+                    polinomio += new String(terminos[i-1].toString());
+                } else {
+                    polinomio += new String("+" + terminos[i-1].toString());
+                }
+            }
+                
         }
         
         return polinomio;

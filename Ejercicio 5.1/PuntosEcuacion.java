@@ -50,6 +50,6 @@ public class PuntosEcuacion
     }
     
     public void main(String args[]){
-            
+        
     }
 }
