@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=Dibujo
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Dibujo\ here.\r\n\r\n\ @author\ sebas\ moran\r\n\ @version\ 1.0\r\n
+comment1.params=
+comment1.target=Dibujo()
+comment2.params=e
+comment2.target=boolean\ handleEvent(java.awt.Event)
+comment3.params=gc
+comment3.target=void\ paint(java.awt.Graphics)
+comment4.params=args
+comment4.target=void\ main(java.lang.String[])
+numComments=5
