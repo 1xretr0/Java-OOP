@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.awt.geom.*;
 
 /**
  * Write a description of class Dibujo here.
@@ -46,6 +47,18 @@ public class Dibujo extends Frame
         
         // nueva awt
         Graphics2D gc2D = (Graphics2D) gc;
+        // dibujar linea
+        gc2D.setStroke(new BasicStroke(10.0f));
+        gc2D.draw(new Line2D.Float(40, 60, 125, 200));
+        // dibujar rect
+        gc2D.setColor(Color.blue);
+        gc2D.draw(new Rectangle2D.Float(100, 40, 50, 125));
+        
+        gc2D.setPaint(new GradientPaint(5, 30, Color.blue, 330, 350,
+        Color.red, true));
+        
+        // rellenar rect
+        gc2D.fill(new Rectangle2D.Float(110, 50, 100, 135));
     }
     
     public static void main(String args[]){
