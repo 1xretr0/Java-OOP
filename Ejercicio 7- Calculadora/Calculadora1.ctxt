@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=Calculadora1
+comment1.params=
+comment1.target=Calculadora1()
+comment1.text=\r\n\ Constructor\ para\ objetos\ de\ la\ clase\ Calculador\r\n
+comment2.params=e\ o
+comment2.target=boolean\ action(java.awt.Event,\ java.lang.Object)
+comment3.params=arg
+comment3.target=void\ main(java.lang.String[])
+numComments=4
