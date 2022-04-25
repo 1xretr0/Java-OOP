@@ -62,6 +62,23 @@ public class Calculadora1 extends Frame
         
         punto = op = true;
         
+        b1.addActionListener(new BotonNumerico());
+        b2.addActionListener(new BotonNumerico());
+        b3.addActionListener(new BotonNumerico());
+        b4.addActionListener(new BotonNumerico());
+        b5.addActionListener(new BotonNumerico());
+        b6.addActionListener(new BotonNumerico());
+        b7.addActionListener(new BotonNumerico());
+        b8.addActionListener(new BotonNumerico());
+        b9.addActionListener(new BotonNumerico());
+        b10.addActionListener(new BotonNumerico());
+        b11.addActionListener(new BotonOpera());
+        b12.addActionListener(new BotonOpera());
+        b13.addActionListener(new BotonOpera());
+        b14.addActionListener(new BotonOpera());
+        b15.addActionListener(new BotonIgual());
+        b16.addActionListener(new BotonPunto());
+        b11.addActionListener(new BotonC());
         addWindowListener( new CW() );      /// Source
     }
     
@@ -72,61 +89,67 @@ public class Calculadora1 extends Frame
         }
 
     }
-        
     
-    public boolean action(Event e, Object o)
-    {
-        if(e.target instanceof Button) {
-            if(e.target == b17) {
-                display.setText("0");
-                punto = true;
-                op = true;
-                num1 = num2 = 0.0;
-            }
-            else {
-                if(e.target == b11 || e.target == b12 || e.target == b13 || e.target == b14) {
-                    if(op) {
-                        Button b = (Button) e.target;
-                        String sign = new String(b.getLabel()); 
-                        car = sign.charAt(0);
-                        num1 = Double.parseDouble(display.getText());
-                        display.setText("0");
-                        op = false;
-                        punto = true;
-                    }
-                } else {
-                    if(e.target == b16) {
-                        if(punto) {
-                            String displaynum = display.getText();
-                            displaynum = displaynum + ".";
-                            display.setText( displaynum );
-                            punto = false;
-                        }
-                    } else {
-                        if(e.target == b15) {
-                            num2 = Double.parseDouble( display.getText());
-                            switch (car) {
-                                case '+': res = num1 + num2; break;
-                                case '-': res = num1 - num2; break;
-                                case '*': res = num1 * num2; break;
-                                case '/': res = num1 / num2; break;
-                            }
-                            display.setText( String.valueOf(res) );
-                            op = punto = true;
-                        } else {
-                            Button b = (Button) e.target;
-                            String displaynum = display.getText();
-                            if( displaynum.equals("0") )
-                                displaynum = "";
-                            displaynum = displaynum + b.getLabel();
-                            display.setText( displaynum );
-                        }
-                    } 
-                }
+    private class BotonC implements ActionListener{
+        public void actionPerformed(ActionEvent e){
+            display.setText("0");
+            punto = true;
+            op = true;
+            num1 = num2 = 0.0;
+        }
+    }
+    
+    private class BotonNumerico implements ActionListener{
+        public void actionPerformed(ActionEvent e){
+            String displaynum = display.getText();
+            if( displaynum.equals("0") ){
+                   displaynum = "";
+                   displaynum = displaynum + e.getActionCommand();
+                   display.setText( displaynum );
             }
         }
+    }
+    
+    private class BotonIgual implements ActionListener{
+        public void actionPerformed(ActionEvent e){
+            num2 = Double.parseDouble( display.getText());
+            switch (car) {
+                case '+': res = num1 + num2; break;
+                case '-': res = num1 - num2; break;
+                case '*': res = num1 * num2; break;
+                case '/': res = num1 / num2; break;
+            }
+            display.setText( String.valueOf(res) );
+            op = punto = true;
+        }
+    }
+    
+    private class BotonOpera implements ActionListener{
+        public void actionPerformed(ActionEvent e){
+            if (op){
+                String sign = new String(e.getActionCommand());
+                car = sign.charAt(0);
+                num1 = Double.parseDouble(display.getText());
+                display.setText("0");
+                op = false;
+                punto = true;
+            }
+        }
+    }
+    
+    private class BotonPunto implements ActionListener{
+        public void actionPerformed(ActionEvent e){
+            if (punto){
+                String displaynum = display.getText();
+                displaynum = displaynum + ".";
+                display.setText( displaynum );
+                punto = false;
+            }
+        }
+    }
         
-        
+    public boolean action(Event e, Object o)
+    {
         return true;
     }
     
