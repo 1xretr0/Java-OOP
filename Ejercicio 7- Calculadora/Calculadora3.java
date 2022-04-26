@@ -1,8 +1,9 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import java.applet.Applet;
 
-public class Calculadora3 extends JFrame
+public class Calculadora3 extends Applet
 {
     // Variables de Instancia 
     private JButton b1, b2, b3,b4, b5, b6, b7, b8, b9;
@@ -13,14 +14,11 @@ public class Calculadora3 extends JFrame
     private char car = ' ';
     private double num1, num2, res;
     
-
     /**
      * Constructor para objetos de la clase Calculador
      */
     public Calculadora3()
     {
-        super("Calculadora");
-        
         b1 = new JButton("1");  b2 = new JButton("2");
         b3 = new JButton("3");  b4 = new JButton("4");
         b5 = new JButton("5");  b6 = new JButton("6");
@@ -57,6 +55,7 @@ public class Calculadora3 extends JFrame
         displ.add(b17, "East");
         displ.add(display, "Center");
         
+        setLayout(new BorderLayout());
         this.add(teclado, "Center");
         add(displ, "North");
         
@@ -79,19 +78,10 @@ public class Calculadora3 extends JFrame
         b15.addActionListener( new BotonIgual() );
         b16.addActionListener( new BotonPunto() );
         b17.addActionListener( new BotonC() );
-        
-        addWindowListener( new CW() );      /// Source
-        
+               
         setSize(300,350);
         setVisible(true);  
         display.setEnabled(false);
-    }
-    
-    private class CW extends WindowAdapter {  // Listener
-        public void windowClosing(WindowEvent e) { 
-            setVisible(false);
-            dispose();
-        }
     }
     
     private class BotonC implements ActionListener {
