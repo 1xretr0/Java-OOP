@@ -1,13 +1,14 @@
 import java.awt.*;
 import java.awt.event.*;
+import javax.swing.*;
 
-public class Calculadora1 extends Frame
+public class Calculadora2 extends JFrame
 {
     // Variables de Instancia 
-    private Button b1, b2, b3,b4, b5, b6, b7, b8, b9;
-    private Button b10, b11, b12, b13, b14, b15, b16, b17;
-    private TextField display;
-    private Panel teclado, displ;
+    private JButton b1, b2, b3,b4, b5, b6, b7, b8, b9;
+    private JButton b10, b11, b12, b13, b14, b15, b16, b17;
+    private JTextField display;
+    private JPanel teclado, displ;
     private boolean punto = true, op = true;
     private char car = ' ';
     private double num1, num2, res;
@@ -16,23 +17,23 @@ public class Calculadora1 extends Frame
     /**
      * Constructor para objetos de la clase Calculador
      */
-    public Calculadora1()
+    public Calculadora2()
     {
         super("Calculadora");
         
-        b1 = new Button("1");  b2 = new Button("2");
-        b3 = new Button("3");  b4 = new Button("4");
-        b5 = new Button("5");  b6 = new Button("6");
-        b7 = new Button("7");  b8 = new Button("8");
-        b9 = new Button("9");  b10 = new Button("0");
-        b11 = new Button("+");  b12 = new Button("-");
-        b13 = new Button("*");  b14 = new Button("/");
-        b15 = new Button("=");  b16 = new Button(".");
-        b17 = new Button("C"); 
+        b1 = new JButton("1");  b2 = new JButton("2");
+        b3 = new JButton("3");  b4 = new JButton("4");
+        b5 = new JButton("5");  b6 = new JButton("6");
+        b7 = new JButton("7");  b8 = new JButton("8");
+        b9 = new JButton("9");  b10 = new JButton("0");
+        b11 = new JButton("+");  b12 = new JButton("-");
+        b13 = new JButton("*");  b14 = new JButton("/");
+        b15 = new JButton("=");  b16 = new JButton(".");
+        b17 = new JButton("C"); 
         
-        display = new TextField("0");
-        teclado = new Panel();
-        displ = new Panel();
+        display = new JTextField("0");
+        teclado = new JPanel();
+        displ = new JPanel();
         
         teclado.setLayout( new GridLayout(4, 4, 3, 3) );
         teclado.add(b7);
@@ -152,7 +153,7 @@ public class Calculadora1 extends Frame
     
     
     public static void main(String arg[]) {
-        Calculadora1 calc = new Calculadora1();  
+        Calculadora2 calc = new Calculadora2();  
     }
     
     
