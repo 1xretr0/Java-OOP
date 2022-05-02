@@ -1,39 +1,45 @@
+
+/**
+ * Write a description of class Calculadora here.
+ * 
+ * @author Roberto Salazar Marquez
+ * @version 1.0
+ */
 import java.awt.*;
 
 public class Calculadora extends Frame
 {
     // Variables de Instancia 
-    private Button b1, b2, b3,b4, b5, b6, b7, b8, b9;
-    private Button b10, b11, b12, b13, b14, b15, b16, b17;
+    private Button b1, b2, b3, b4, b5, b6, b7, b8, b9, b10;  // teclas de numeros
+    private Button b11, b12, b13, b14, b15, b16, b17;        // teclas +,-,*,/,=, ., C
     private TextField display;
     private Panel teclado, displ;
     private boolean punto = true, op = true;
-    private char car = ' ';
-    private double num1, num2, res;
-    
+    private char c = ' ';
+    private double num1 = 0.0, num2 = 0.0, res;
 
     /**
-     * Constructor para objetos de la clase Calculador
+     * Constructor para objetos de la clase Calculadora
      */
     public Calculadora()
     {
         super("Calculadora");
         
-        b1 = new Button("1");  b2 = new Button("2");
-        b3 = new Button("3");  b4 = new Button("4");
-        b5 = new Button("5");  b6 = new Button("6");
-        b7 = new Button("7");  b8 = new Button("8");
-        b9 = new Button("9");  b10 = new Button("0");
-        b11 = new Button("+");  b12 = new Button("-");
-        b13 = new Button("*");  b14 = new Button("/");
-        b15 = new Button("=");  b16 = new Button(".");
+        b1 = new Button("1"); b2 = new Button("2");
+        b3 = new Button("3"); b4 = new Button("4");
+        b5 = new Button("5"); b6 = new Button("6");
+        b7 = new Button("7"); b8 = new Button("8");
+        b9 = new Button("9"); b10 = new Button("0");
+        b11 = new Button("+"); b12 = new Button("-");
+        b13 = new Button("*"); b14 = new Button("/");
+        b15 = new Button("="); b16 = new Button(".");
         b17 = new Button("C"); 
         
         display = new TextField("0");
         teclado = new Panel();
-        displ = new Panel();
+        displ = new Panel();    
         
-        teclado.setLayout( new GridLayout(4, 4, 3, 3) );
+        teclado.setLayout( new GridLayout(4, 4, 5, 5) );
         teclado.add(b7);
         teclado.add(b8);
         teclado.add(b9);
@@ -52,17 +58,16 @@ public class Calculadora extends Frame
         teclado.add(b11);
         
         displ.setLayout( new BorderLayout() );
-        displ.add(b17, "East");
         displ.add(display, "Center");
+        displ.add(b17, "East");
         
-        this.add(teclado, "Center");
         add(displ, "North");
+        add(teclado, "Center");
         
-        punto = op = true;
     }
     
     public boolean handleEvent(Event e) {
-        if(e.id == Event.WINDOW_DESTROY) {
+        if(e.id == Event.WINDOW_DESTROY ) {
             hide();
             dispose();
             return true;
@@ -70,8 +75,7 @@ public class Calculadora extends Frame
         return super.handleEvent(e);
     }
     
-    
-    public boolean action(Event e, Object o)
+     public boolean action(Event e, Object o)
     {
         if(e.target instanceof Button) {
             if(e.target == b17) {
@@ -85,7 +89,7 @@ public class Calculadora extends Frame
                     if(op) {
                         Button b = (Button) e.target;
                         String sign = new String(b.getLabel()); 
-                        car = sign.charAt(0);
+                        c = sign.charAt(0);
                         num1 = Double.parseDouble(display.getText());
                         display.setText("0");
                         op = false;
@@ -102,7 +106,7 @@ public class Calculadora extends Frame
                     } else {
                         if(e.target == b15) {
                             num2 = Double.parseDouble( display.getText());
-                            switch (car) {
+                            switch (c) {
                                 case '+': res = num1 + num2; break;
                                 case '-': res = num1 - num2; break;
                                 case '*': res = num1 * num2; break;
@@ -127,16 +131,10 @@ public class Calculadora extends Frame
         return true;
     }
     
-    public static void main(String arg[]) {
+    public static void main(String args[]) {
         Calculadora calc = new Calculadora();
         calc.resize(300,350);
         calc.show();
-        
     }
     
-    
 }
-
-
-
-
