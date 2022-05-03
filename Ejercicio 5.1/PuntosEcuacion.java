@@ -1,3 +1,4 @@
+
 import java.util.Vector;
 /**
  * conserva los puntos representados por un polinomio
@@ -49,7 +50,20 @@ public class PuntosEcuacion
         return puntos.get(num);
     }
     
-    public void main(String args[]){
+    public static void main(String args[]){
+        Termino termino1 = new Termino(2, 0);
+        Termino termino2 = new Termino(5, 1);
+        Termino termino3 = new Termino(8, 2);
+        Termino termino4 = new Termino(4, 3);
         
+        Polinomio polinomio1 = new Polinomio(4);
+        polinomio1.agregaTermino(termino1);
+        polinomio1.agregaTermino(termino2);
+        polinomio1.agregaTermino(termino3);
+        polinomio1.agregaTermino(termino4);
+        
+        PuntosEcuacion puntos1 = new PuntosEcuacion(polinomio1, 1, 5, 1);
+        puntos1.getPuntosEcuacion();
+        System.out.println(puntos1.getPunto(2));
     }
 }
