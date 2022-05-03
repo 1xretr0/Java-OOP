@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=DivideByZeroException
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ DivideByZeroException\ here.\r\n\ \r\n\ @author\ Roberto\ Salazar\ Marquez\r\n\ @version\ 1.0\r\n
+comment1.params=
+comment1.target=DivideByZeroException()
+comment1.text=\r\n\ Constructor\ para\ objetos\ de\ la\ clase\ DivideByZeroException\r\n
+numComments=2
