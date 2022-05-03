@@ -1,4 +1,4 @@
-
+import java.awt.*;
 import java.util.Vector;
 /**
  * conserva los puntos representados por un polinomio
@@ -8,7 +8,7 @@ import java.util.Vector;
  * @author sebas moran
  * @version 1.0
  */
-public class PuntosEcuacion
+public class PuntosEcuacion extends Frame
 {
     private Polinomio poli;
     private Vector <Punto> puntos;
@@ -64,6 +64,8 @@ public class PuntosEcuacion
         
         PuntosEcuacion puntos1 = new PuntosEcuacion(polinomio1, 1, 5, 1);
         puntos1.getPuntosEcuacion();
-        System.out.println(puntos1.getPunto(2));
+        // System.out.println(puntos1.getPunto(2));
+        Grafica grafica1 = new Grafica(puntos1, 1, 5, polinomio1);
+        
     }
 }
