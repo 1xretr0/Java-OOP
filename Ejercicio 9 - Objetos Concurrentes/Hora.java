@@ -2,15 +2,39 @@
  * @author sebas moran
  * @version 1.0
  */
-public class Hora extends Thread
+import java.awt.*;
+import java.awt.event.*;
+
+public class Hora extends Frame implements Runnable
 {
     private int segundos;
+    private Thread hilo;
+    private TextField hora_text;
+    
     
     //  Zona de consttructores
-   public Hora(int h, int m, int s) {
+   public Hora(int h, int m, int s, String nombre) {
+       super(nombre);
        setHoras(h);
        setMinutos(m);
        setSegundos(s);
+       setLayout(new FlowLayout() );
+       hora_text = new TextField(8);
+       hora_text.setEditable(false);
+       add(hora_text);
+       addWindowListener(new CW());
+       setSize(190,80);
+       
+       hilo = new Thread();
+       hilo.start();
+       setVisible(true);
+    }
+   
+   private class CW extends WindowAdapter{
+       void windowClosing(WindowListener e) {
+           setVisible(false);
+           dispose();
+       }
    }
    
    public Hora(int h, int m) {
@@ -34,16 +58,15 @@ public class Hora extends Thread
    // override a thread
    public void run(){
        int count = 1;
-       while (count < 60){
+       while (true){
            tick();
            try {
-               sleep(1000);
+               hilo.sleep(1000);
            }
            catch (InterruptedException excp){
                excp.printStackTrace();
            }
-           count++;
-           System.out.println(toString());
+           hora_text.setText(toString());
        }
    }
    // Zona de las operaciones
@@ -113,7 +136,7 @@ public class Hora extends Thread
    }
    
    public static void main(){
-       Hora hora = new Hora(18, 45, 0);
-       hora.run();
+       Hora hora = new Hora(18, 45, 0, "CDMX");
+       Hora hora2 = new Hora(11, 45, 0, "TOKYO");
    }
 }

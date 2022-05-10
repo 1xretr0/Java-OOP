@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=Almacen
+comment1.params=
+comment1.target=Almacen()
+comment2.params=val
+comment2.target=void\ setValor(int)
+comment3.params=
+comment3.target=int\ getValor()
+numComments=4

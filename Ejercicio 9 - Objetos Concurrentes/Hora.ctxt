@@ -1,8 +1,7 @@
 #BlueJ class context
 comment0.target=Hora
-comment0.text=\r\n\ @author\ sebas\ moran\r\n\ @version\ 1.0\r\n
-comment1.params=h\ m\ s
-comment1.target=Hora(int,\ int,\ int)
+comment1.params=h\ m\ s\ nombre
+comment1.target=Hora(int,\ int,\ int,\ java.lang.String)
 comment10.params=
 comment10.target=int\ getMinutos()
 comment11.params=
