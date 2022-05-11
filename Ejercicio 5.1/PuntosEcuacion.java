@@ -83,24 +83,34 @@ public class PuntosEcuacion extends Frame
         for (int i = -250; i <= 250; i += 10){
             gc.draw(new Line2D.Float(i, 250, i, -250));
         }
+            
+        // puntos linea
+        gc.setColor(Color.red);
+        gc.setStroke(new BasicStroke(2f));
+        int p_size = getPuntosEcuacion().size();
+        for (int i = 0; i < p_size; i+=inc){
+            if (i+1 < p_size){
+                double x1 = (double) getPunto(i).getX() * 10;
+                double y1 = (double) getPunto(i).getY() * -10;
+                double x2 = (double) getPunto(i+1).getX() * 10;
+                double y2 = (double) getPunto(i+1).getY() * -10;
+                gc.draw(new Line2D.Double(x1, y1, x2, y2));    
+            }
+        }
         
         // puntos evaluados
         gc.setColor(Color.blue);
-        int p_size = getPuntosEcuacion().size();
+        gc.setStroke(new BasicStroke(1.0f));
         for (int i = 0; i < p_size; i++){
             double x = (double) getPunto(i).getX() * 10;
             double y = (double) getPunto(i).getY() * -10;
             gc.fill(new Ellipse2D.Double(x-5, y-5, 10, 10));
         }
         
-        // puntos linea
+        // imprimir funcion
         gc.setColor(Color.red);
-        for (double i = -13; i < 13; i+=0.005){
-            double y = poli.evalua(i) * -10;
-            gc.fill(new Ellipse2D.Double((i*10)-2, y-2, 4, 4));
-        }
-        
-
+        gc.setFont(new Font("Helvetica", Font.BOLD, 20));
+        gc.drawString(poli.toString(), 0, 230);
     }
     
     public static void main(String args[]){
