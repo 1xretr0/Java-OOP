@@ -64,7 +64,7 @@ public class PuntosEcuacion extends Frame
         gc.translate(250,250);
         gc.setColor(Color.black);
         gc.setStroke(new BasicStroke(2f));
-        // linea horizontal
+        // lineas horizontales
         gc.draw(new Line2D.Float(-250, 0, 250, 0));
         
         gc.setColor(Color.gray);
@@ -75,13 +75,22 @@ public class PuntosEcuacion extends Frame
         
         gc.setColor(Color.black);
         gc.setStroke(new BasicStroke(2f));
-        // linea vertical
+        // lineas verticales
         gc.draw(new Line2D.Float(0, 250, 0, -250));
         
         gc.setColor(Color.gray);
         gc.setStroke(new BasicStroke(1.0f));
         for (int i = -250; i <= 250; i += 10){
             gc.draw(new Line2D.Float(i, 250, i, -250));
+        }
+        
+        // puntos evaluados
+        gc.setColor(Color.blue);
+        int p_size = getPuntosEcuacion().size();
+        for (int i = 0; i < p_size; i++){
+            double x = (double) getPunto(i).getX() * 10;
+            double y = (double) getPunto(i).getY() * -10;
+            gc.fill(new Ellipse2D.Double(x-5, y-5, 10, 10));
         }
         
         // puntos linea
@@ -91,14 +100,7 @@ public class PuntosEcuacion extends Frame
             gc.fill(new Ellipse2D.Double((i*10)-2, y-2, 4, 4));
         }
         
-        // puntos evaluados
-        gc.setColor(Color.blue);
-        int p_size = getPuntosEcuacion().size();
-        for (int i = 0; i < p_size; i++){
-            double x = (double) getPunto(i).getX() * 10;
-            double y = (double) getPunto(i).getY() * 10;
-            gc.fill(new Ellipse2D.Double(x-5, y-5, 10, 10));
-        }
+
     }
     
     public static void main(String args[]){
@@ -107,17 +109,13 @@ public class PuntosEcuacion extends Frame
         Termino termino3 = new Termino(2, 3);
         Termino termino4 = new Termino(3, 4);
         
-        Polinomio polinomio1 = new Polinomio(4);
-        polinomio1.agregaTermino(termino1);
-        polinomio1.agregaTermino(termino2);
-        polinomio1.agregaTermino(termino3);
-        polinomio1.agregaTermino(termino4);
+        Polinomio polinomio1 = new Polinomio(2);
+        polinomio1.agregaTermino(new Termino(1, 2));
         
         PuntosEcuacion puntos1 = new PuntosEcuacion(polinomio1, 0, 5, 1);
         // System.out.println(puntos1.getPunto(2));
         
         puntos1.resize(500, 500);
         puntos1.show();
-        
     }
 }
