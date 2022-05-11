@@ -1,9 +1,0 @@
-#BlueJ class context
-comment0.target=Grafica
-comment1.params=p\ linf\ lsup\ po
-comment1.target=Grafica(PuntosEcuacion,\ double,\ double,\ Polinomio)
-comment2.params=gc
-comment2.target=void\ paint(java.awt.Graphics)
-comment3.params=args
-comment3.target=void\ main(java.lang.String[])
-numComments=4
