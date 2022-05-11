@@ -28,9 +28,17 @@ public class Termino
      * @param  x
      * @return  valor total del termino
      */
-    public double evalua(double x)
-    {
-        return coeficiente * Math.pow(x, exponente);
+    public double evalua(double x){
+        double total = x;
+        
+        if(!(exponente == 0)){
+            for(int i = 1; i < exponente; i++){
+                total = total * x;
+            }
+            total *= coeficiente;
+            return total;
+        }else
+            return coeficiente;
     }
     
     /**
@@ -47,6 +55,9 @@ public class Termino
     }
     
     public String toString(){
-        return new String(coeficiente + "x^" + exponente);
+        if(exponente == 0)
+            return new String(coeficiente + "");
+        else
+            return new String(coeficiente + "x^" + exponente);
     }
 }

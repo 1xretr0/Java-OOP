@@ -28,7 +28,7 @@ public class Polinomio
     public void agregaTermino(Termino term, int index)
     {
         if (index >= 0 && index <= terminos.length)
-            terminos[index] = term;
+            terminos[index] = new Termino(term.getCoeficiente(), term.getExponente());
     }
     
     /**
@@ -61,11 +61,11 @@ public class Polinomio
     public double evalua(double x){
         double total = 0;
         
-        for (int i = 0; i < terminos.length; i++){
-            if (terminos[i] != null)
-                total += terminos[i].evalua(x);;
+        for(Termino recorre : terminos){
+            if(!(recorre == null)){     //if(recorre != null)
+                total += recorre.evalua(x);
+            }
         }
-        
         return total;
     }
     
@@ -83,6 +83,6 @@ public class Polinomio
                 
         }
         
-        return polinomio;
+        return new String(polinomio);
     }
 }

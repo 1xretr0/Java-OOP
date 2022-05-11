@@ -1,6 +1,9 @@
 import java.awt.*;
-import java.util.Vector;
+import java.awt.event.*;
 import java.awt.geom.*;
+import java.util.*;
+import java.util.Vector;
+
 /**
  * conserva los puntos representados por un polinomio
  * en un intervalo dado. generara una lista de valores
@@ -18,22 +21,26 @@ public class PuntosEcuacion extends Frame
     public PuntosEcuacion(Polinomio poli, double linf, double lsup,
     double inc)
     {
-        super("PuntosEcuacion");
+        super("Grafica");
+        addWindowListener(new CW());
+        setResizable(false);
         
         this.poli = poli;
-        puntos = new Vector<Punto>(1);
         this.linf = linf;
         this.lsup = lsup;
         this.inc = inc;
+        puntos = new Vector<Punto>(1);
+        for(double i = linf; i <= lsup; i += inc){
+            Punto punto = new Punto(i, poli.evalua(i));
+            puntos.add(punto);
+        }
     }
     
-    public boolean handleEvent(Event e){
-        if (e.id == Event.WINDOW_DESTROY){
-            setVisible(false); dispose();
-            // hide() esta deprecated
-            return true;
+    private class CW extends WindowAdapter{     // listener
+        public void windowClosing(WindowEvent e){
+            setVisible(false);
+            dispose();
         }
-        return super.handleEvent(e);
     }
 
     /**
@@ -44,18 +51,10 @@ public class PuntosEcuacion extends Frame
      */
     public Vector getPuntosEcuacion()
     {
-        for (double i = linf; i <= lsup; i+=inc){
-            double x = i;
-            double y = poli.evalua(i);
-            
-            Punto punto_aux = new Punto(x, y);
-            puntos.add(punto_aux);
-        }
-        
-        return new Vector<Punto>(puntos);
+        return puntos;
     }
     
-    public Punto<Integer> getPunto(int num){
+    public Punto getPunto(int num){
         return puntos.get(num);
     }
     
@@ -67,14 +66,10 @@ public class PuntosEcuacion extends Frame
         gc.setStroke(new BasicStroke(2f));
         // linea horizontal
         gc.draw(new Line2D.Float(-250, 0, 250, 0));
-        gc.draw(new Line2D.Float(-250, 100, 250, 100));
+        
         gc.setColor(Color.gray);
         gc.setStroke(new BasicStroke(1.0f));
-        for (int i = 10; i <= 250; i += 20){
-            gc.draw(new Line2D.Float(250, i, -250, i));
-        }
-        
-        for (int i = -10; i >= -250; i -= 20){
+        for (int i = -250; i <= 250; i += 10){
             gc.draw(new Line2D.Float(250, i, -250, i));
         }
         
@@ -82,22 +77,35 @@ public class PuntosEcuacion extends Frame
         gc.setStroke(new BasicStroke(2f));
         // linea vertical
         gc.draw(new Line2D.Float(0, 250, 0, -250));
+        
         gc.setColor(Color.gray);
         gc.setStroke(new BasicStroke(1.0f));
-        for (int i = 10; i <= 250; i += 20){
+        for (int i = -250; i <= 250; i += 10){
             gc.draw(new Line2D.Float(i, 250, i, -250));
         }
         
-        for (int i = -10; i >= -250; i -= 20){
-            gc.draw(new Line2D.Float(i, 250, i, -250));
+        // puntos linea
+        gc.setColor(Color.red);
+        for (double i = -13; i < 13; i+=0.005){
+            double y = poli.evalua(i) * -10;
+            gc.fill(new Ellipse2D.Double((i*10)-2, y-2, 4, 4));
+        }
+        
+        // puntos evaluados
+        gc.setColor(Color.blue);
+        int p_size = getPuntosEcuacion().size();
+        for (int i = 0; i < p_size; i++){
+            double x = (double) getPunto(i).getX() * 10;
+            double y = (double) getPunto(i).getY() * 10;
+            gc.fill(new Ellipse2D.Double(x-5, y-5, 10, 10));
         }
     }
     
     public static void main(String args[]){
-        Termino termino1 = new Termino(2, 0);
-        Termino termino2 = new Termino(5, 1);
-        Termino termino3 = new Termino(8, 2);
-        Termino termino4 = new Termino(4, 3);
+        Termino termino1 = new Termino(0, 1);
+        Termino termino2 = new Termino(1, 2);
+        Termino termino3 = new Termino(2, 3);
+        Termino termino4 = new Termino(3, 4);
         
         Polinomio polinomio1 = new Polinomio(4);
         polinomio1.agregaTermino(termino1);
@@ -105,11 +113,11 @@ public class PuntosEcuacion extends Frame
         polinomio1.agregaTermino(termino3);
         polinomio1.agregaTermino(termino4);
         
-        PuntosEcuacion puntos1 = new PuntosEcuacion(polinomio1, 1, 5, 1);
-        puntos1.getPuntosEcuacion();
+        PuntosEcuacion puntos1 = new PuntosEcuacion(polinomio1, 0, 5, 1);
         // System.out.println(puntos1.getPunto(2));
         
         puntos1.resize(500, 500);
         puntos1.show();
+        
     }
 }
