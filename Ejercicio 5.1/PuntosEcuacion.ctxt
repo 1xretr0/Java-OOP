@@ -1,15 +1,17 @@
 #BlueJ class context
 comment0.target=PuntosEcuacion
 comment0.text=\r\n\ conserva\ los\ puntos\ representados\ por\ un\ polinomio\r\n\ en\ un\ intervalo\ dado.\ generara\ una\ lista\ de\ valores\r\n\ desde\ el\ limite\ inferior\ al\ superior\ del\ intervalo\r\n\r\n\ @author\ sebas\ moran\r\n\ @version\ 1.0\r\n
-comment1.params=poli\ linf\ lsup\ inc
-comment1.target=PuntosEcuacion(Polinomio,\ double,\ double,\ double)
+comment1.params=
+comment1.target=PuntosEcuacion()
 comment2.params=
 comment2.target=java.util.Vector\ getPuntosEcuacion()
 comment2.text=\r\n\ obtiene\ los\ valores\ de\ los\ polinomios\ evaluados\r\n\r\n\ @param\ \ y\ \ a\ sample\ parameter\ for\ a\ method\r\n\ @return\ \ \ \ the\ sum\ of\ x\ and\ y\r\n
 comment3.params=num
 comment3.target=Punto\ getPunto(int)
-comment4.params=gc1d
-comment4.target=void\ paint(java.awt.Graphics)
-comment5.params=args
-comment5.target=void\ main(java.lang.String[])
-numComments=6
+comment4.params=linf\ lsup\ inc
+comment4.target=void\ calculaPuntos(double,\ double,\ double)
+comment5.params=poli
+comment5.target=void\ agregaPolinomio(Polinomio)
+comment6.params=gc1d
+comment6.target=void\ paint(java.awt.Graphics)
+numComments=7

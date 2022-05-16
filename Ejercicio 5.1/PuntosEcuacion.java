@@ -12,36 +12,27 @@ import java.util.Vector;
  * @author sebas moran
  * @version 1.0
  */
-public class PuntosEcuacion extends Frame
+public class PuntosEcuacion extends Canvas
 {
     private Polinomio poli;
     private Vector <Punto> puntos;
     private double linf, lsup, inc;
+    private boolean flag = false;
     
-    public PuntosEcuacion(Polinomio poli, double linf, double lsup,
-    double inc)
+    public PuntosEcuacion()
     {
-        super("Grafica");
-        addWindowListener(new CW());
-        setResizable(false);
+        // super("Grafica");
+        // addWindowListener(new CW());
+        // setResizable(false);
         
-        this.poli = poli;
-        this.linf = linf;
-        this.lsup = lsup;
-        this.inc = inc;
-        puntos = new Vector<Punto>(1);
-        for(double i = linf; i <= lsup; i += inc){
-            Punto punto = new Punto(i, poli.evalua(i));
-            puntos.add(punto);
-        }
     }
     
-    private class CW extends WindowAdapter{     // listener
-        public void windowClosing(WindowEvent e){
-            setVisible(false);
-            dispose();
-        }
-    }
+    // private class CW extends WindowAdapter{     // listener
+        // public void windowClosing(WindowEvent e){
+            // setVisible(false);
+            // dispose();
+        // }
+    // }
 
     /**
      * obtiene los valores de los polinomios evaluados
@@ -56,6 +47,22 @@ public class PuntosEcuacion extends Frame
     
     public Punto getPunto(int num){
         return puntos.get(num);
+    }
+    
+    public void calculaPuntos(double linf, double lsup, double inc){
+        this.linf = linf;
+        this.lsup = lsup;
+        this.inc = inc;
+        puntos = new Vector<Punto>(1);
+        for(double i = linf; i <= lsup; i += inc){
+            Punto punto = new Punto(i, poli.evalua(i));
+            puntos.add(punto);
+        }
+        this.flag = true;
+    }
+    
+    public void agregaPolinomio(Polinomio poli){
+        this.poli = poli;
     }
     
     public void paint(Graphics gc1d){
@@ -83,49 +90,53 @@ public class PuntosEcuacion extends Frame
         for (int i = -250; i <= 250; i += 10){
             gc.draw(new Line2D.Float(i, 250, i, -250));
         }
-            
-        // puntos linea
-        gc.setColor(Color.red);
-        gc.setStroke(new BasicStroke(2f));
-        int p_size = getPuntosEcuacion().size();
-        for (int i = 0; i < p_size; i+=inc){
-            if (i+1 < p_size){
-                double x1 = (double) getPunto(i).getX() * 10;
-                double y1 = (double) getPunto(i).getY() * -10;
-                double x2 = (double) getPunto(i+1).getX() * 10;
-                double y2 = (double) getPunto(i+1).getY() * -10;
-                gc.draw(new Line2D.Double(x1, y1, x2, y2));    
+        
+        if (flag){
+            // puntos linea
+            gc.setColor(Color.red);
+            gc.setStroke(new BasicStroke(2f));
+            int p_size = getPuntosEcuacion().size();
+            for (int i = 0; i < p_size; i+=inc){
+                if (i+1 < p_size){
+                    double x1 = (double) getPunto(i).getX() * 10;
+                    double y1 = (double) getPunto(i).getY() * -10;
+                    double x2 = (double) getPunto(i+1).getX() * 10;
+                    double y2 = (double) getPunto(i+1).getY() * -10;
+                    gc.draw(new Line2D.Double(x1, y1, x2, y2));    
+                }
             }
+            
+            // puntos evaluados
+            gc.setColor(Color.blue);
+            gc.setStroke(new BasicStroke(1.0f));
+            for (int i = 0; i < p_size; i++){
+                double x = (double) getPunto(i).getX() * 10;
+                double y = (double) getPunto(i).getY() * -10;
+                gc.fill(new Ellipse2D.Double(x-5, y-5, 10, 10));
+            }
+            
+            // imprimir funcion
+            gc.setColor(Color.red);
+            gc.setFont(new Font("Helvetica", Font.BOLD, 20));
+            gc.drawString(poli.toString(), 0, 230);
         }
-        
-        // puntos evaluados
-        gc.setColor(Color.blue);
-        gc.setStroke(new BasicStroke(1.0f));
-        for (int i = 0; i < p_size; i++){
-            double x = (double) getPunto(i).getX() * 10;
-            double y = (double) getPunto(i).getY() * -10;
-            gc.fill(new Ellipse2D.Double(x-5, y-5, 10, 10));
-        }
-        
-        // imprimir funcion
-        gc.setColor(Color.red);
-        gc.setFont(new Font("Helvetica", Font.BOLD, 20));
-        gc.drawString(poli.toString(), 0, 230);
     }
+        
     
-    public static void main(String args[]){
-        Termino termino1 = new Termino(0, 1);
-        Termino termino2 = new Termino(1, 2);
-        Termino termino3 = new Termino(2, 3);
-        Termino termino4 = new Termino(3, 4);
+    // public static void main(String args[]){
+        // Termino termino1 = new Termino(0, 1);
+        // Termino termino2 = new Termino(1, 2);
+        // Termino termino3 = new Termino(2, 3);
+        // Termino termino4 = new Termino(3, 4);
         
-        Polinomio polinomio1 = new Polinomio(2);
-        polinomio1.agregaTermino(new Termino(1, 2));
+        // Polinomio polinomio1 = new Polinomio(2);
+        // polinomio1.agregaTermino(new Termino(1, 2));
         
-        PuntosEcuacion puntos1 = new PuntosEcuacion(polinomio1, 0, 5, 1);
+        // PuntosEcuacion puntos1 = new PuntosEcuacion(polinomio1, 0, 5, 1);
+        
         // System.out.println(puntos1.getPunto(2));
         
-        puntos1.resize(500, 500);
-        puntos1.show();
-    }
+        // puntos1.resize(500, 500);
+        // puntos1.show();
+    // }
 }

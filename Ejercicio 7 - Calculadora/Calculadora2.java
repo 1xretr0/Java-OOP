@@ -172,12 +172,10 @@ public class Calculadora2 extends JFrame
         }
     }
     
-    
+
     public static void main(String arg[]) {
         Calculadora2 calc = new Calculadora2();  
     }
-    
-    
 }
 
 
