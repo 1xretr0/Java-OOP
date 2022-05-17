@@ -12,12 +12,13 @@ import java.util.Vector;
  * @author sebas moran
  * @version 1.0
  */
-public class PuntosEcuacion extends Canvas
+public class PuntosEcuacion extends Canvas implements Runnable
 {
     private Polinomio poli;
     private Vector <Punto> puntos;
     private double linf, lsup, inc;
     private boolean flag = false;
+    private Thread hilo;
     
     public PuntosEcuacion()
     {
@@ -59,7 +60,8 @@ public class PuntosEcuacion extends Canvas
             puntos.add(punto);
         }
         this.flag = true;
-        repaint();
+        hilo = new Thread(this);
+        hilo.start();
     }
     
     public void agregaPolinomio(Polinomio poli){
@@ -93,17 +95,23 @@ public class PuntosEcuacion extends Canvas
         }
         
         if (flag){
-            // puntos linea
+            // lineas de punto a punto
             gc.setColor(Color.red);
             gc.setStroke(new BasicStroke(2f));
             int p_size = getPuntosEcuacion().size();
             for (int i = 0; i < p_size; i+=inc){
-                if (i+1 < p_size){
-                    double x1 = (double) getPunto(i).getX() * 10;
-                    double y1 = (double) getPunto(i).getY() * -10;
-                    double x2 = (double) getPunto(i+1).getX() * 10;
-                    double y2 = (double) getPunto(i+1).getY() * -10;
-                    gc.draw(new Line2D.Double(x1, y1, x2, y2));    
+                try {
+                    if (i+1 < p_size){
+                        double x1 = (double) getPunto(i).getX() * 10;
+                        double y1 = (double) getPunto(i).getY() * -10;
+                        double x2 = (double) getPunto(i+1).getX() * 10;
+                        double y2 = (double) getPunto(i+1).getY() * -10;
+                        gc.draw(new Line2D.Double(x1, y1, x2, y2));   
+                        hilo.sleep(50);
+                    }
+                }    
+                catch (InterruptedException exc){
+                    exc.printStackTrace();
                 }
             }
             
@@ -120,9 +128,14 @@ public class PuntosEcuacion extends Canvas
             gc.setColor(Color.red);
             gc.setFont(new Font("Helvetica", Font.BOLD, 20));
             gc.drawString(poli.toString(), 0, 230);
+            
+            hilo.stop();
         }
     }
-        
+    
+    public void run(){
+        repaint();
+    }
     
     // public static void main(String args[]){
         // Termino termino1 = new Termino(0, 1);

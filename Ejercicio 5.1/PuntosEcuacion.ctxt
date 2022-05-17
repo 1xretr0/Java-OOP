@@ -14,4 +14,6 @@ comment5.params=poli
 comment5.target=void\ agregaPolinomio(Polinomio)
 comment6.params=gc1d
 comment6.target=void\ paint(java.awt.Graphics)
-numComments=7
+comment7.params=
+comment7.target=void\ run()
+numComments=8
