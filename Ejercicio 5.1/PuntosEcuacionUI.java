@@ -112,7 +112,14 @@ public class PuntosEcuacionUI extends JFrame{
             double inc = Double.parseDouble(t_inc.getText());
             
             lienzo.agregaPolinomio(polinomio);
-            lienzo.calculaPuntos(inf, sup, inc);
+            try
+            {
+                lienzo.calculaPuntos(inf, sup, inc);
+            }
+            catch (java.io.IOException ioe)
+            {
+                ioe.printStackTrace();
+            }
         }
     }
     

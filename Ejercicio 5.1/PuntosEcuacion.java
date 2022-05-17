@@ -1,8 +1,9 @@
-    import java.awt.*;
+import java.awt.*;
 import java.awt.event.*;
 import java.awt.geom.*;
 import java.util.*;
 import java.util.Vector;
+import java.io.*;
 
 /**
  * conserva los puntos representados por un polinomio
@@ -19,6 +20,8 @@ public class PuntosEcuacion extends Canvas implements Runnable
     private double linf, lsup, inc;
     private boolean flag = false;
     private Thread hilo;
+    private DataOutputStream write;
+
     
     public PuntosEcuacion()
     {
@@ -50,7 +53,7 @@ public class PuntosEcuacion extends Canvas implements Runnable
         return puntos.get(num);
     }
     
-    public void calculaPuntos(double linf, double lsup, double inc){
+    public void calculaPuntos(double linf, double lsup, double inc) throws IOException {
         this.linf = linf;
         this.lsup = lsup;
         this.inc = inc;
@@ -59,6 +62,26 @@ public class PuntosEcuacion extends Canvas implements Runnable
             Punto punto = new Punto(i, poli.evalua(i));
             puntos.add(punto);
         }
+          
+        try {
+            write = new DataOutputStream(new BufferedOutputStream(
+            new FileOutputStream("puntos.txt")));
+            int i = 0;
+            while (i < (puntos.size() - 1)){
+                write.writeUTF(puntos.get(i).toString());
+                i++;
+            }
+            
+        }
+        catch (FileNotFoundException exc){
+            System.out.println("El archivo no se encontro.");
+        }
+        finally{
+            if (write != null){
+                write.close();
+            }
+        }
+        
         this.flag = true;
         hilo = new Thread(this);
         hilo.start();
@@ -127,7 +150,7 @@ public class PuntosEcuacion extends Canvas implements Runnable
             // imprimir funcion
             gc.setColor(Color.red);
             gc.setFont(new Font("Helvetica", Font.BOLD, 20));
-            gc.drawString(poli.toString(), 0, 230);
+            gc.drawString(poli.toString(), -240, 230);
             
             hilo.stop();
         }
