@@ -4,8 +4,9 @@ import javax.swing.*;
 
 public class PuntosEcuacionUI extends JFrame{
     private PuntosEcuacion lienzo;
-    private JPanel buttons, crear_polinomio, add_termino, graficar,
-    add_termino2;
+    private JPanel buttons, crear_polinomio, add_termino, graficar;
+    private JTextField t_grado, t_coef, t_exp, t_linf, t_lsup, t_inc;
+    private JButton b_crear, b_add, b_graficar;
     
     public PuntosEcuacionUI(){
         super("Graficador");
@@ -19,41 +20,52 @@ public class PuntosEcuacionUI extends JFrame{
         // panel seccion crear polinomio
         crear_polinomio = new JPanel();
         crear_polinomio.setLayout(new BorderLayout());
-        crear_polinomio.add(new JLabel("Parámetros de la Gráfica                                        "), 
+        crear_polinomio.add(new JLabel("Parámetros de la Gráfica"), 
         "North");
         crear_polinomio.add(new JLabel("Grado del polinomio: "),
         "West");
-        crear_polinomio.add(new JTextField());
-        crear_polinomio.add(new JButton("Crear Polinomio"), 
-        "South");
+        t_grado = new JTextField();
+        crear_polinomio.add(t_grado);
+        b_crear = new JButton("Crear Polinomio");
+        crear_polinomio.add(b_crear, "South");
         
         // panel seccion añadir termino
         add_termino = new JPanel();
         add_termino.setLayout(new GridLayout(3,2));
         add_termino.add(new JLabel("Coeficiente del Termino: "),
         "West");
-        add_termino.add(new JTextField());
+        t_coef = new JTextField();
+        add_termino.add(t_coef);
         add_termino.add(new JLabel("Exponente del Termino: "),
         "West");
-        add_termino.add(new JTextField());
-        add_termino.add(new JButton("Añadir Termino"), "South");
+        t_exp = new JTextField();
+        add_termino.add(t_exp);
+        b_add = new JButton("Añadir Termino");
+        add_termino.add(b_add, "South");
         
+        // panel seccion graficar
         graficar = new JPanel();
         graficar.setLayout(new GridLayout(4,2));
         graficar.add(new JLabel("Límite Inferior: "));
-        graficar.add(new JTextField());
+        t_linf = new JTextField();
+        graficar.add(t_linf);
         graficar.add(new JLabel("Límite Superior: "));
-        graficar.add(new JTextField());
+        t_lsup = new JTextField();
+        graficar.add(t_lsup);
         graficar.add(new JLabel("Intervalo: "));
-        graficar.add(new JTextField());
-        graficar.add(new JButton("Graficar"));
+        t_inc = new JTextField();
+        graficar.add(t_inc);
+        b_graficar = new JButton("Graficar");
+        graficar.add(b_graficar);
         
+        b_crear.addActionListener(new BotonCrear());
+        b_add.addActionListener(new BotonAdd());
+        b_graficar.addActionListener(new BotonGraficar());
+        
+        // añadir secciones a seccion global
         buttons.add(crear_polinomio);
         buttons.add(add_termino);
         buttons.add(graficar);
-        // buttons.add(new Button("Button 2"), "East");
-        
-        
         
         lienzo = new PuntosEcuacion();
         add(lienzo, "Center");
@@ -61,13 +73,20 @@ public class PuntosEcuacionUI extends JFrame{
         
         setResizable(false);
         setVisible(true);
-        
     }
     
     private class CW extends WindowAdapter{
         public void windowClosing(WindowEvent e){
             setVisible(false);
             dispose();
+        }
+    }
+    
+    // funcion listener para boton crear polinomio
+    private class BotonCrear implements ActionListener{
+        public void actionPerformed(ActionEvent e){
+            int grado = Integer.parseInt(t_grado.getText());
+            // TODO
         }
     }
     
