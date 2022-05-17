@@ -7,6 +7,7 @@ public class PuntosEcuacionUI extends JFrame{
     private JPanel buttons, crear_polinomio, add_termino, graficar;
     private JTextField t_grado, t_coef, t_exp, t_linf, t_lsup, t_inc;
     private JButton b_crear, b_add, b_graficar;
+    private Polinomio polinomio;
     
     public PuntosEcuacionUI(){
         super("Graficador");
@@ -86,7 +87,32 @@ public class PuntosEcuacionUI extends JFrame{
     private class BotonCrear implements ActionListener{
         public void actionPerformed(ActionEvent e){
             int grado = Integer.parseInt(t_grado.getText());
-            // TODO
+            polinomio = new Polinomio(grado);
+        }
+    }
+    
+    // funcion listener para boton añadir termino
+    private class BotonAdd implements ActionListener{
+        public void actionPerformed(ActionEvent e){
+            double coeficiente = Double.parseDouble(t_coef.getText());
+            int exponente = Integer.parseInt(t_exp.getText());
+            
+            polinomio.agregaTermino(new Termino(coeficiente,exponente));
+            
+            t_coef.setText("");
+            t_exp.setText("");
+        }
+    }
+    
+    // funcion listener para boton graficar polinomio
+    private class BotonGraficar implements ActionListener{
+        public void actionPerformed(ActionEvent e){
+            double inf = Double.parseDouble(t_linf.getText());
+            double sup = Double.parseDouble(t_lsup.getText());
+            double inc = Double.parseDouble(t_inc.getText());
+            
+            lienzo.agregaPolinomio(polinomio);
+            lienzo.calculaPuntos(inf, sup, inc);
         }
     }
     

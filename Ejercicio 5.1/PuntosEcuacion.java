@@ -1,4 +1,4 @@
-import java.awt.*;
+    import java.awt.*;
 import java.awt.event.*;
 import java.awt.geom.*;
 import java.util.*;
@@ -59,6 +59,7 @@ public class PuntosEcuacion extends Canvas
             puntos.add(punto);
         }
         this.flag = true;
+        repaint();
     }
     
     public void agregaPolinomio(Polinomio poli){
@@ -67,22 +68,22 @@ public class PuntosEcuacion extends Canvas
     
     public void paint(Graphics gc1d){
         Graphics2D gc = (Graphics2D) gc1d;
-        
         gc.translate(250,250);
+        
+        // lineas horizontales
         gc.setColor(Color.black);
         gc.setStroke(new BasicStroke(2f));
-        // lineas horizontales
         gc.draw(new Line2D.Float(-250, 0, 250, 0));
-        
+
         gc.setColor(Color.gray);
         gc.setStroke(new BasicStroke(1.0f));
         for (int i = -250; i <= 250; i += 10){
             gc.draw(new Line2D.Float(250, i, -250, i));
         }
         
+        // lineas verticales
         gc.setColor(Color.black);
         gc.setStroke(new BasicStroke(2f));
-        // lineas verticales
         gc.draw(new Line2D.Float(0, 250, 0, -250));
         
         gc.setColor(Color.gray);
