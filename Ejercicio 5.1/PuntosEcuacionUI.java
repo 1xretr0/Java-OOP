@@ -6,18 +6,19 @@ public class PuntosEcuacionUI extends JFrame{
     // declaracion elemento grafico puntos ecuacion
     private PuntosEcuacion lienzo;
     // declaracion panel global de botones y paneles por seccion
-    private JPanel buttons, crear_polinomio, add_termino, graficar;
+    private JPanel buttons, crear_polinomio, add_termino, graficar, p_grafica;
     // declaracion txt fields
-    private JTextField t_grado, t_coef, t_exp, t_linf, t_lsup, t_inc;
+    private JTextField t_grado, t_coef, t_exp, t_linf, t_lsup, t_inc, t_poli;
     // declaracion buttons
     private JButton b_crear, b_add, b_graficar;
+    // declaracion objeto polinomio
     private Polinomio polinomio;
     
     
     public PuntosEcuacionUI(){
         super("Graficador");
         addWindowListener(new CW());
-        setSize(800,550);
+        setSize(810,550);
         
         // panel global de botones
         buttons = new JPanel();
@@ -66,45 +67,12 @@ public class PuntosEcuacionUI extends JFrame{
         graficar.add(new JLabel("Límite Inferior: "));
         t_linf = new JTextField();
         graficar.add(t_linf);
-        // t_linf accept only numbers
-        t_linf.addKeyListener(new KeyAdapter(){
-           public void keyTyped(KeyEvent e){
-               char c = e.getKeyChar();
-               if (((c < '0') || (c > '9')) && (c !=
-               KeyEvent.VK_BACK_SPACE)){
-                   e.consume();
-               }
-           }
-        });
-        
         graficar.add(new JLabel("Límite Superior: "));
         t_lsup = new JTextField();
         graficar.add(t_lsup);
-        // t_lsup accept only numbers
-        t_lsup.addKeyListener(new KeyAdapter(){
-           public void keyTyped(KeyEvent e){
-               char c = e.getKeyChar();
-               if (((c < '0') || (c > '9')) && (c !=
-               KeyEvent.VK_BACK_SPACE)){
-                   e.consume();
-               }
-           }
-        });
-        
         graficar.add(new JLabel("Intervalo: "));
         t_inc = new JTextField();
         graficar.add(t_inc);
-        // t_inc accept only numbers
-        t_inc.addKeyListener(new KeyAdapter(){
-           public void keyTyped(KeyEvent e){
-               char c = e.getKeyChar();
-               if (((c < '0') || (c > '9')) && (c !=
-               KeyEvent.VK_BACK_SPACE)){
-                   e.consume();
-               }
-           }
-        });
-        
         b_graficar = new JButton("Graficar");
         graficar.add(b_graficar);
         
@@ -118,9 +86,18 @@ public class PuntosEcuacionUI extends JFrame{
         buttons.add(add_termino);
         buttons.add(graficar);
         
-        // add lienzo y botones a pantalla
+        // panel seccion grafica
+        p_grafica = new JPanel();
+        p_grafica.setLayout(new BorderLayout());
+        
         lienzo = new PuntosEcuacion();
-        add(lienzo, "Center");
+        p_grafica.add(lienzo);
+        t_poli = new JTextField();
+        t_poli.setEditable(false);
+        p_grafica.add(t_poli, "South");
+        
+        // add grafica y botones a pantalla
+        add(p_grafica, "Center");
         add(buttons, "West");
         
         setResizable(false);
@@ -189,6 +166,7 @@ public class PuntosEcuacionUI extends JFrame{
                 double inc = Double.parseDouble(t_inc.getText());
                 
                 lienzo.agregaPolinomio(polinomio);
+                t_poli.setText(polinomio.toString());
                 
                 try
                 {
@@ -210,7 +188,6 @@ public class PuntosEcuacionUI extends JFrame{
                 JOptionPane.showMessageDialog(null, 
                 "Error. Crea un polinomio antes.");
             }
-            
         }
     }
     

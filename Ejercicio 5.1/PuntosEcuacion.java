@@ -157,12 +157,6 @@ public class PuntosEcuacion extends Canvas implements Runnable
                 gc.fill(new Ellipse2D.Double(x-5, y-5, 10, 10));
             }
             
-            // imprimir funcion
-            gc.setColor(Color.red);
-            gc.setFont(new Font("Helvetica", Font.BOLD, 20));
-            gc.drawString(poli.toString(), -240, 230);
-            
-            hilo.stop();
         }
     }
     
