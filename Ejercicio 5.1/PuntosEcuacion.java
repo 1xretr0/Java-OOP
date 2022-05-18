@@ -66,13 +66,8 @@ public class PuntosEcuacion extends Canvas implements Runnable
         puntos = new Vector<Punto>(0);
         // se evalua el polinomio desde linf a lsup
         for(double i = linf; i <= lsup; i += inc){
-            // Punto punto = new Punto(i, poli.evalua(i));
-            // puntos.add(punto);
-             double x = i;
-            i = Math.round(i * 100.0) / 100.0;
-            double y = poli.evalua(i);
-            Punto aux = new Punto(x, y);
-            puntos.add(aux);
+            Punto punto = new Punto(i, poli.evalua(i));
+            puntos.add(punto);
         }
         
         // try para exception al escribir en archivo
