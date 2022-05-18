@@ -53,32 +53,10 @@ public class PuntosEcuacionUI extends JFrame{
         "West");
         t_coef = new JTextField();
         add_termino.add(t_coef);
-        // t_coef accept only numbers
-        t_coef.addKeyListener(new KeyAdapter(){
-           public void keyTyped(KeyEvent e){
-               char c = e.getKeyChar();
-               if (((c < '0') || (c > '9')) && (c !=
-               KeyEvent.VK_BACK_SPACE)){
-                   e.consume();
-               }
-           }
-        });
-    
         add_termino.add(new JLabel("Exponente del Termino: "),
         "West");
         t_exp = new JTextField();
         add_termino.add(t_exp);
-        // t_exp accept only numbers
-        t_exp.addKeyListener(new KeyAdapter(){
-           public void keyTyped(KeyEvent e){
-               char c = e.getKeyChar();
-               if (((c < '0') || (c > '9')) && (c !=
-               KeyEvent.VK_BACK_SPACE)){
-                   e.consume();
-               }
-           }
-        });
-        
         b_add = new JButton("Añadir Termino");
         add_termino.add(b_add, "South");
         
@@ -160,22 +138,42 @@ public class PuntosEcuacionUI extends JFrame{
     // funcion listener para boton crear polinomio
     private class BotonCrear implements ActionListener{
         public void actionPerformed(ActionEvent e){
-            
-            int grado = Integer.parseInt(t_grado.getText());
-            polinomio = new Polinomio(grado);
-            
-            // dialog creacion polinomio
-            JOptionPane.showMessageDialog(null, "Polinomio Creado!");
+            try{
+                int grado = Integer.parseInt(t_grado.getText());
+                polinomio = new Polinomio(grado);
+                // dialog creacion polinomio
+                JOptionPane.showMessageDialog(null, "Polinomio creado!");
+            }
+            catch (NumberFormatException exc){
+                JOptionPane.showMessageDialog(null, 
+                "Error. Ingrese un grado mayor a 0.");
+            }
         }
     }
     
     // funcion listener para boton añadir termino
     private class BotonAdd implements ActionListener{
         public void actionPerformed(ActionEvent e){
-            double coeficiente = Double.parseDouble(t_coef.getText());
-            int exponente = Integer.parseInt(t_exp.getText());
-            
-            polinomio.agregaTermino(new Termino(coeficiente,exponente));
+            try {
+                double coeficiente = Double.parseDouble(t_coef.getText());
+                int exponente = Integer.parseInt(t_exp.getText());
+                polinomio.agregaTermino(new Termino(coeficiente,exponente));
+            }
+            catch (NumberFormatException exc){
+                // valida tipo de dato ingresado
+                JOptionPane.showMessageDialog(null, 
+                "Error. Coeficiente y/o Exponente no Valido.");
+            }
+            catch (ArrayIndexOutOfBoundsException exc){
+                // valida exponentes con el grado del polinomio
+                // exc.printStackTrace();
+                JOptionPane.showMessageDialog(null,
+                ("Error. Grado del polinomio: " + t_grado.getText()));
+            }
+            catch (NullPointerException exc){
+                JOptionPane.showMessageDialog(null, 
+                "Error. Cree un polinomio antes.");
+            }
             
             t_coef.setText("");
             t_exp.setText("");
@@ -185,19 +183,34 @@ public class PuntosEcuacionUI extends JFrame{
     // funcion listener para boton graficar polinomio
     private class BotonGraficar implements ActionListener{
         public void actionPerformed(ActionEvent e){
-            double inf = Double.parseDouble(t_linf.getText());
-            double sup = Double.parseDouble(t_lsup.getText());
-            double inc = Double.parseDouble(t_inc.getText());
+            try{
+                double inf = Double.parseDouble(t_linf.getText());
+                double sup = Double.parseDouble(t_lsup.getText());
+                double inc = Double.parseDouble(t_inc.getText());
+                
+                lienzo.agregaPolinomio(polinomio);
+                
+                try
+                {
+                    lienzo.calculaPuntos(inf, sup, inc);
+                }
+                catch (java.io.IOException ioe)
+                {
+                    ioe.printStackTrace();
+                }
+            }
+            catch (NumberFormatException exc){
+                JOptionPane.showMessageDialog(null, 
+                "Error. Limite inferior, superior y/o intervalo no validos.");
+                t_linf.setText("");
+                t_lsup.setText("");
+                t_inc.setText("");
+            }
+            catch (NullPointerException exc){
+                JOptionPane.showMessageDialog(null, 
+                "Error. Crea un polinomio antes.");
+            }
             
-            lienzo.agregaPolinomio(polinomio);
-            try
-            {
-                lienzo.calculaPuntos(inf, sup, inc);
-            }
-            catch (java.io.IOException ioe)
-            {
-                ioe.printStackTrace();
-            }
         }
     }
     

@@ -77,7 +77,10 @@ public class Polinomio
                 if (i == 1){
                     polinomio += new String(terminos[i-1].toString());
                 } else {
-                    polinomio += new String("+" + terminos[i-1].toString());
+                    if (terminos[i-1].getCoeficiente() < 0)
+                        polinomio += new String(terminos[i-1].toString());
+                    else
+                        polinomio += new String("+" + terminos[i-1].toString());    
                 }
             }
                 

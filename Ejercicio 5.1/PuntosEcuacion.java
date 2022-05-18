@@ -15,11 +15,17 @@ import java.io.*;
  */
 public class PuntosEcuacion extends Canvas implements Runnable
 {
+    // declaracion variable polinomio
     private Polinomio poli;
+    // declaracion vector que almacena puntos evaluados
     private Vector <Punto> puntos;
+    // declaracion limites a evaluar el polinomio
     private double linf, lsup, inc;
+    // bandera para paint
     private boolean flag = false;
+    // declaracion thread para paint
     private Thread hilo;
+    // declaracion write flow para output file
     private DataOutputStream write;
 
     
@@ -58,11 +64,13 @@ public class PuntosEcuacion extends Canvas implements Runnable
         this.lsup = lsup;
         this.inc = inc;
         puntos = new Vector<Punto>(1);
+        // se evalua el polinomio desde linf a lsup
         for(double i = linf; i <= lsup; i += inc){
             Punto punto = new Punto(i, poli.evalua(i));
             puntos.add(punto);
         }
-          
+        
+        // try para exception al escribir en archivo
         try {
             write = new DataOutputStream(new BufferedOutputStream(
             new FileOutputStream("puntos.txt")));
@@ -82,6 +90,7 @@ public class PuntosEcuacion extends Canvas implements Runnable
             }
         }
         
+        // bandera para indicar que ya se puede dibujar grafica evaluada
         this.flag = true;
         hilo = new Thread(this);
         hilo.start();
@@ -117,6 +126,7 @@ public class PuntosEcuacion extends Canvas implements Runnable
             gc.draw(new Line2D.Float(i, 250, i, -250));
         }
         
+        // verificacion de flag
         if (flag){
             // lineas de punto a punto
             gc.setColor(Color.red);
