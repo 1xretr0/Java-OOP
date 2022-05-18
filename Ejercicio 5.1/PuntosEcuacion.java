@@ -76,7 +76,7 @@ public class PuntosEcuacion extends Canvas implements Runnable
             new FileOutputStream("puntos.txt")));
             int i = 0;
             while (i < (puntos.size() - 1)){
-                write.writeUTF(puntos.get(i).toString());
+                write.writeUTF(puntos.get(i).toString() + '\n');
                 i++;
             }
             
@@ -139,7 +139,7 @@ public class PuntosEcuacion extends Canvas implements Runnable
                     double x2 = (double) getPunto(i+1).getX() * 10;
                     double y2 = (double) getPunto(i+1).getY() * -10;
                     gc.draw(new Line2D.Double(x1, y1, x2, y2));
-                    if(y1 <= 240 && y1 >= -240){
+                    if(y1 <= 270 && y1 >= -270){
                         gc.draw(new Line2D.Double(x1, y1, x2, y2));
                         hilo.sleep(50);
                     }

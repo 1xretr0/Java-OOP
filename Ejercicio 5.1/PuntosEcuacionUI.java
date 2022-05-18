@@ -2,6 +2,10 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+// this class is the main ui of the project
+// creates the ui and calls puntosecuacion for the polinomio process and
+// graphic painting
+
 public class PuntosEcuacionUI extends JFrame{
     // declaracion elemento grafico puntos ecuacion
     private PuntosEcuacion lienzo;
@@ -31,7 +35,7 @@ public class PuntosEcuacionUI extends JFrame{
         "North");
         crear_polinomio.add(new JLabel("Grado del polinomio: "),
         "West");
-        t_grado = new JTextField(15);
+        t_grado = new JTextField();
         crear_polinomio.add(t_grado);
         // t_grado accept only numbers
         t_grado.addKeyListener(new KeyAdapter(){
