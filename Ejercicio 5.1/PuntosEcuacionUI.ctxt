@@ -2,4 +2,16 @@
 comment0.target=PuntosEcuacionUI
 comment1.params=
 comment1.target=PuntosEcuacionUI()
-numComments=2
+comment2.params=e
+comment2.target=void\ keyTyped(java.awt.event.KeyEvent)
+comment3.params=e
+comment3.target=void\ keyTyped(java.awt.event.KeyEvent)
+comment4.params=e
+comment4.target=void\ keyTyped(java.awt.event.KeyEvent)
+comment5.params=e
+comment5.target=void\ keyTyped(java.awt.event.KeyEvent)
+comment6.params=e
+comment6.target=void\ keyTyped(java.awt.event.KeyEvent)
+comment7.params=e
+comment7.target=void\ keyTyped(java.awt.event.KeyEvent)
+numComments=8
