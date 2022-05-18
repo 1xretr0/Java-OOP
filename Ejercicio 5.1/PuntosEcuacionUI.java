@@ -1,6 +1,8 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import java.util.Vector;
+import java.io.*;
 
 // this class is the main ui of the project
 // creates the ui and calls puntosecuacion for the polinomio process and
@@ -17,6 +19,8 @@ public class PuntosEcuacionUI extends JFrame{
     private JButton b_crear, b_add, b_graficar;
     // declaracion objeto polinomio
     private Polinomio polinomio;
+    // declaracion write flow para output file
+    private DataOutputStream write;
     
     
     public PuntosEcuacionUI(){
@@ -170,11 +174,13 @@ public class PuntosEcuacionUI extends JFrame{
                 double inc = Double.parseDouble(t_inc.getText());
                 
                 lienzo.agregaPolinomio(polinomio);
+                // escribe polinomio en text field
                 t_poli.setText(polinomio.toString());
+                lienzo.calculaPuntos(inf, sup, inc);
                 
                 try
                 {
-                    lienzo.calculaPuntos(inf, sup, inc);
+                    guardaPuntos();
                 }
                 catch (java.io.IOException ioe)
                 {
@@ -191,6 +197,30 @@ public class PuntosEcuacionUI extends JFrame{
             catch (NullPointerException exc){
                 JOptionPane.showMessageDialog(null, 
                 "Error. Crea un polinomio antes.");
+            }
+        }
+    }
+    
+    public void guardaPuntos() throws IOException {
+        // try para exception al escribir en archivo
+        try {
+            write = new DataOutputStream(new BufferedOutputStream(
+            new FileOutputStream("puntos.txt")));
+            
+            Vector <Punto> puntos = lienzo.getPuntosEcuacion();
+            int i = 0;
+            while (i < (puntos.size() - 1)){
+                write.writeUTF(puntos.get(i).toString() + '\n');
+                i++;
+            }
+            
+        }
+        catch (FileNotFoundException exc){
+            System.out.println("El archivo no se encontro.");
+        }
+        finally{
+            if (write != null){
+                write.close();
             }
         }
     }

@@ -25,6 +25,6 @@ public class Punto <E>
     }
     
     public String toString() {
-        return new String("Punto (" + x + "," + y +")");
+        return new String("(" + x + "," + y +")");
     }
 }

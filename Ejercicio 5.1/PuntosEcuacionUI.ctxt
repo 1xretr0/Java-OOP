@@ -4,4 +4,6 @@ comment1.params=
 comment1.target=PuntosEcuacionUI()
 comment2.params=e
 comment2.target=void\ keyTyped(java.awt.event.KeyEvent)
-numComments=3
+comment3.params=
+comment3.target=void\ guardaPuntos()
+numComments=4

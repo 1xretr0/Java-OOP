@@ -3,7 +3,6 @@ import java.awt.event.*;
 import java.awt.geom.*;
 import java.util.*;
 import java.util.Vector;
-import java.io.*;
 
 /**
  * conserva los puntos representados por un polinomio
@@ -25,8 +24,6 @@ public class PuntosEcuacion extends Canvas implements Runnable
     private boolean flag = false;
     // declaracion thread para paint
     private Thread hilo;
-    // declaracion write flow para output file
-    private DataOutputStream write;
 
     
     public PuntosEcuacion()
@@ -59,7 +56,7 @@ public class PuntosEcuacion extends Canvas implements Runnable
         return puntos.get(num);
     }
     
-    public void calculaPuntos(double linf, double lsup, double inc) throws IOException {
+    public void calculaPuntos(double linf, double lsup, double inc){
         this.linf = linf;
         this.lsup = lsup;
         this.inc = inc;
@@ -71,24 +68,24 @@ public class PuntosEcuacion extends Canvas implements Runnable
         }
         
         // try para exception al escribir en archivo
-        try {
-            write = new DataOutputStream(new BufferedOutputStream(
-            new FileOutputStream("puntos.txt")));
-            int i = 0;
-            while (i < (puntos.size() - 1)){
-                write.writeUTF(puntos.get(i).toString() + '\n');
-                i++;
-            }
+        // try {
+            // write = new DataOutputStream(new BufferedOutputStream(
+            // new FileOutputStream("puntos.txt")));
+            // int i = 0;
+            // while (i < (puntos.size() - 1)){
+                // write.writeUTF(puntos.get(i).toString() + '\n');
+                // i++;
+            // }
             
-        }
-        catch (FileNotFoundException exc){
-            System.out.println("El archivo no se encontro.");
-        }
-        finally{
-            if (write != null){
-                write.close();
-            }
-        }
+        // }
+        // catch (FileNotFoundException exc){
+            // System.out.println("El archivo no se encontro.");
+        // }
+        // finally{
+            // if (write != null){
+                // write.close();
+            // }
+        // }
         
         // bandera para indicar que ya se puede dibujar grafica evaluada
         this.flag = true;
