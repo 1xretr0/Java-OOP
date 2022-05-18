@@ -63,11 +63,16 @@ public class PuntosEcuacion extends Canvas implements Runnable
         this.linf = linf;
         this.lsup = lsup;
         this.inc = inc;
-        puntos = new Vector<Punto>(1);
+        puntos = new Vector<Punto>(0);
         // se evalua el polinomio desde linf a lsup
         for(double i = linf; i <= lsup; i += inc){
-            Punto punto = new Punto(i, poli.evalua(i));
-            puntos.add(punto);
+            // Punto punto = new Punto(i, poli.evalua(i));
+            // puntos.add(punto);
+             double x = i;
+            i = Math.round(i * 100.0) / 100.0;
+            double y = poli.evalua(i);
+            Punto aux = new Punto(x, y);
+            puntos.add(aux);
         }
         
         // try para exception al escribir en archivo
@@ -129,34 +134,34 @@ public class PuntosEcuacion extends Canvas implements Runnable
         // verificacion de flag
         if (flag){
             // lineas de punto a punto
-            gc.setColor(Color.red);
-            gc.setStroke(new BasicStroke(2f));
-            int p_size = getPuntosEcuacion().size();
-            for (int i = 0; i < p_size; i+=inc){
-                try {
-                    if (i+1 < p_size){
-                        double x1 = (double) getPunto(i).getX() * 10;
-                        double y1 = (double) getPunto(i).getY() * -10;
-                        double x2 = (double) getPunto(i+1).getX() * 10;
-                        double y2 = (double) getPunto(i+1).getY() * -10;
-                        gc.draw(new Line2D.Double(x1, y1, x2, y2));   
+            try{
+                gc.setColor(Color.red);
+                gc.setStroke(new BasicStroke(2f));
+                int p_size = getPuntosEcuacion().size();
+                for (int i = 0; i < p_size-1; i++){
+                    double x1 = (double) getPunto(i).getX() * 10;
+                    double y1 = (double) getPunto(i).getY() * -10;
+                    double x2 = (double) getPunto(i+1).getX() * 10;
+                    double y2 = (double) getPunto(i+1).getY() * -10;
+                    gc.draw(new Line2D.Double(x1, y1, x2, y2));
+                    if(y1 <= 240 && y1 >= -240){
+                        gc.draw(new Line2D.Double(x1, y1, x2, y2));
                         hilo.sleep(50);
                     }
-                }    
-                catch (InterruptedException exc){
-                    exc.printStackTrace();
+                }
+                // puntos evaluados
+                gc.setColor(Color.blue);
+                gc.setStroke(new BasicStroke(1.0f));
+                for (int i = 0; i < p_size; i++){
+                    double x = (double) getPunto(i).getX() * 10;
+                    double y = (double) getPunto(i).getY() * -10;
+                    gc.fill(new Ellipse2D.Double(x-2.5, y-2.5, 5, 5));
                 }
             }
-            
-            // puntos evaluados
-            gc.setColor(Color.blue);
-            gc.setStroke(new BasicStroke(1.0f));
-            for (int i = 0; i < p_size; i++){
-                double x = (double) getPunto(i).getX() * 10;
-                double y = (double) getPunto(i).getY() * -10;
-                gc.fill(new Ellipse2D.Double(x-5, y-5, 10, 10));
+            catch (InterruptedException exc){
+                exc.printStackTrace();
             }
-            
+            hilo.stop();
         }
     }
     
