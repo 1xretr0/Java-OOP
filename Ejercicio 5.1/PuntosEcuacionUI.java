@@ -3,9 +3,13 @@ import java.awt.event.*;
 import javax.swing.*;
 
 public class PuntosEcuacionUI extends JFrame{
+    // declaracion elemento grafico puntos ecuacion
     private PuntosEcuacion lienzo;
+    // declaracion panel global de botones y paneles por seccion
     private JPanel buttons, crear_polinomio, add_termino, graficar;
+    // declaracion txt fields
     private JTextField t_grado, t_coef, t_exp, t_linf, t_lsup, t_inc;
+    // declaracion buttons
     private JButton b_crear, b_add, b_graficar;
     private Polinomio polinomio;
     
